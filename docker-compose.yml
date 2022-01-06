@@ -4,10 +4,10 @@ services:
   rstudio:
     image: 'rocker/verse:4.1.1'
     ports:
-      - 127.0.0.1:8787:8787
-    environment:
-      - 'DISABLE_AUTH=true'
-    volumes:
-      - "$PWD:/home/rstudio"
+      - 8787:8787
+    # environment:
+      # - 'DISABLE_AUTH=true'
+    # volumes:
+      # - "$PWD:/home/rstudio"
     working_dir: /home/rstudio
-    # user: "$UID:$GROUPS"
+    # user: "$UID:$GROUPS" # RStudio server needs to run as root.
