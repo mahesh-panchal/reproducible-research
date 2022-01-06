@@ -4,3 +4,7 @@ tasks:
     init: |
       curl -s https://get.nextflow.io | bash
       sudo mv nextflow /usr/local/bin
+
+ports:
+  # Expose port for RStudio
+  - port: 8787
