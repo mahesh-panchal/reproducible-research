@@ -9,6 +9,7 @@ tasks:
   - command: |
       export UID
       export GROUPS=$( id -g )
+      make rocker-distill
     # Cannot export bash arrays (GROUPS)
 
 ports:
