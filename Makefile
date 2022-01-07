@@ -2,7 +2,7 @@
 
 # CONDA_PKGM := mamba                  # Conda package manager to use
 DISTILL_IMG := rocker/distill:4.1.2  # Image name and version
-WEBSITE_DIR := website
+WEBSITE_DIR := website_src
 # Replace Container command with Singularity, or other container engine
 # Initialise to empty string along with DISTILL_IMG to use local R installation
 CONTAINER_CMD := docker run --user "${UID}:${GROUPS}" --rm -v "${PWD}:/home/rstudio" -w /home/rstudio
@@ -31,7 +31,7 @@ website: $(WEBSITE_DIR)/_site.yml
 	$(CONTAINER_CMD) $(DISTILL_IMG) Rscript scripts/build_website.R
 
 $(WEBSITE_DIR)/_site.yml:
-	$(CONTAINER_CMD) $(DISTILL_IMG) Rscript scripts/init_website.R
+	$(CONTAINER_CMD) $(DISTILL_IMG) Rscript scripts/init_website.R $(WEBSITE_DIR)
 
 clean-website:
 	rm -rf $(WEBSITE_DIR)
