@@ -27,6 +27,10 @@ clean-report:
 rocker-distill:
 	scripts/build_distill_container.sh $(DISTILL_IMG)
 
+# Publish Distill website to gh-pages
+gh-pages: $(WEBSITE_DIR)/docs/index.html
+	git subtree push --prefix $(WEBSITE_DIR)/docs . gh-pages
+
 # Builds the Distill website
 website: $(WEBSITE_DIR)/_site.yml
 	$(CONTAINER_CMD) $(DISTILL_IMG) Rscript scripts/build_website.R $(WEBSITE_DIR)
@@ -37,4 +41,4 @@ $(WEBSITE_DIR)/_site.yml:
 clean-website:
 	rm -rf $(WEBSITE_DIR)
 
-.PHONY: analysis report rocker-distill website clean-report clean-website
+.PHONY: analysis gh-pages report rocker-distill website clean-report clean-website
