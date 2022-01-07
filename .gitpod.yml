@@ -6,6 +6,10 @@ tasks:
     init: |
       curl -s https://get.nextflow.io | bash
       sudo mv nextflow /usr/local/bin
+  - command: |
+      export UID
+      export GROUPS=$( id -g )
+    # Cannot export bash arrays (GROUPS)
 
 ports:
   # Expose port for RStudio
