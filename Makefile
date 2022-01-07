@@ -5,7 +5,9 @@ DISTILL_IMG := rocker/distill:4.1.2  # Image name and version
 WEBSITE_DIR := website_src
 # Replace Container command with Singularity, or other container engine
 # Initialise to empty string along with DISTILL_IMG to use local R installation
-CONTAINER_CMD := docker run --user "${UID}:${GROUPS}" --rm -v "${PWD}:/home/rstudio" -w /home/rstudio
+UID := $$( id -u )
+GROUP := $$( id -g )
+CONTAINER_CMD := docker run --user "$(UID):$(GROUP)" --rm -v "${PWD}:/home/rstudio" -w /home/rstudio
 
 # Run Nextflow workflow
 analysis:
@@ -27,8 +29,7 @@ rocker-distill:
 
 # Builds the Distill website
 website: $(WEBSITE_DIR)/_site.yml
-	cd $(WEBSITE_DIR); \
-	$(CONTAINER_CMD) $(DISTILL_IMG) Rscript scripts/build_website.R
+	$(CONTAINER_CMD) $(DISTILL_IMG) Rscript scripts/build_website.R $(WEBSITE_DIR)
 
 $(WEBSITE_DIR)/_site.yml:
 	$(CONTAINER_CMD) $(DISTILL_IMG) Rscript scripts/init_website.R $(WEBSITE_DIR)
