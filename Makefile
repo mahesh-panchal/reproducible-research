@@ -2,7 +2,7 @@
 
 # CONDA_PKGM := mamba                  # Conda package manager to use
 DISTILL_IMG := rocker/distill:4.1.2  # Image name and version
-WEBSITE_DIR := website_src
+WEBSITE_DIR := website
 # Replace Container command with Singularity, or other container engine
 # Initialise to empty string along with DISTILL_IMG to use local R installation
 UID := $$( id -u )
