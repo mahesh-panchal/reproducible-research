@@ -27,6 +27,7 @@ rocker-distill:
 
 # Builds the Distill website
 website: $(WEBSITE_DIR)/_site.yml
+	cd $(WEBSITE_DIR); \
 	$(CONTAINER_CMD) $(DISTILL_IMG) Rscript scripts/build_website.R
 
 $(WEBSITE_DIR)/_site.yml:
