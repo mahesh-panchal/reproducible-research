@@ -1,4 +1,4 @@
-# Run using: docker compose up
+# Run using: UID="$( id -u )" docker compose up -d
 version: "3.9"
 services:
   rstudio:
@@ -6,9 +6,15 @@ services:
     ports:
       - 8787:8787
       # - 127.0.0.1:8787:8787 # IP is not localhost here.
-    # environment:
-      # - 'DISABLE_AUTH=true'
-    # volumes:
-      # - "$PWD:/home/rstudio"
+    environment:
+      - USERID=$UID
+      # - PASSWORD=clever-custom-password 
+      # Add your own password above or use
+      # `docker logs <container>` to see the randomly generated password
+    volumes:
+      - $PWD:/home/rstudio/reproducible-research
+      - data:/home/rstudio/data
     working_dir: /home/rstudio
-    # user: "$UID:$GROUPS" # RStudio server needs to run as root.
+    # user: "$UID:$GROUPS" # Do not use this! RStudio server needs to run as root. Set USERID above.
+volumes:
+  data:
