@@ -10,9 +10,7 @@ Play with this demo in Gitpod.
 
 ## About
 
-Communication is a cornerstone of effective science. Typically, journal articles where most science is published,
-limit the length of the article, aiming to make the authors as concise as possible. In practice, this can mean
-that much is left out, particularly if an avenue of analysis did not work out or was not novel enough. 
+Communication is a cornerstone of effective science.
 
 The aim of this demo is to show how one can efficiently make a publishable dry-lab notebook, with all the details
 necessary to replicate the various computational analyses performed. Importantly, an aim is to reduce the work 
