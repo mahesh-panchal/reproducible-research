@@ -45,4 +45,12 @@ $(WEBSITE_DIR)/_site.yml:
 clean-website:
 	rm -rf $(WEBSITE_DIR)
 
-.PHONY: analysis gh-pages report rocker-distill website clean-report clean-website
+# Run RStudio from Rocker/verse:4.1.2 using docker-compose
+rstudio-start:
+	UID=$(UID) docker-compose up -d
+	$(info If you didn't provide a password in docker-compose.yml, then use `docker logs <container>` to see your password)
+
+rstudio-stop:
+	docker-compose down
+
+.PHONY: analysis gh-pages report rocker-distill website clean-report clean-website rstudio-start rstudio-stop
