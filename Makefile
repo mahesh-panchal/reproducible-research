@@ -27,9 +27,13 @@ clean-report:
 rocker-distill:
 	scripts/build_distill_container.sh $(DISTILL_IMG)
 
-# Publish Distill website to gh-pages
+# Publish Distill website to local gh-pages branch
 gh-pages: $(WEBSITE_DIR)/docs/index.html
 	git subtree push --prefix $(WEBSITE_DIR)/docs . gh-pages
+
+# Publish Distill website to gh-pages branch on Github
+gh-pages-origin: $(WEBSITE_DIR)/docs/index.html
+	git subtree push --prefix $(WEBSITE_DIR)/docs origin gh-pages
 
 # Builds the Distill website
 website: $(WEBSITE_DIR)/_site.yml
