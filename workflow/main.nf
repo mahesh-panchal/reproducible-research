@@ -5,9 +5,10 @@ nextflow.enable.dsl = 2
 
 // import Nextflow modules
 include { FASTQC as PRE_FASTQC; 
-          FASTQC as POST_FASTQC } from ''
-include { FASTP                 } from ''
-include {                       } from ''
+          FASTQC as POST_FASTQC } from 'modules/fastq'
+include { FASTP                 } from 'modules/fastp'
+include { BWA_INDEX; 
+          BWA_ALIGN             } from 'modules/bwa'
 
 // Default workflow parameters are provided in the file 'nextflow.config'.
 
@@ -25,12 +26,12 @@ workflow {
     // Quality Check reads
     PRE_FASTQC ( reads )
     FASTP ( reads )
-    POST_FASTQC ( FASTP.out.trimmed_reads )
+    POST_FASTQC ( FASTP.out.reads )
 
     // Alignment
     BWA_INDEX ( reference.collect() )
-    BWA_ALIGN ( 
-        FASTP.out.trimmed_reads, 
-        BWA_INDEX.out.indices.collect() 
+    BWA_ALIGN (
+        FASTP.out.reads,
+        BWA_INDEX.out.index.collect()
     )
 }
