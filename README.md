@@ -15,7 +15,7 @@ Communication is a cornerstone of effective science.
 The aim of this demo is to show how one can efficiently make a publishable dry-lab notebook, with all the details
 necessary to replicate the various computational analyses performed. Importantly, an aim is to reduce the work 
 needed to get from code to something published. In this case, the published form is a website that demonstrates
-with no ambiguity how you got from the beginning to the end of your project. Unlike the publication, the website
+with no ambiguity how you got from the beginning to the end of your project. Unlike a journal article, a website
 can go into more detail of the analyses that got you to the novel result without relegating everything to
 supplementary material. This kind of publishable notebook can also be a demonstration of the skills you've 
 learned along the way, which would otherwise be hidden away (or worse, forgotten about).
