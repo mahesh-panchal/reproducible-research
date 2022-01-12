@@ -14,6 +14,9 @@ analysis:
 	cd analyses/carpentries-data_wrangling; \
 	./run_nextflow.sh
 
+fetch-rawdata:
+	scripts/fetch_rawdata.sh
+
 # Builds conda environment to execute workflow
 # nextflow-env:
 #	$(CONDA_PKGM) env create --prefix "conda/nextflow-env" \
