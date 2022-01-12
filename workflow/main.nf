@@ -5,10 +5,10 @@ nextflow.enable.dsl = 2
 
 // import Nextflow modules
 include { FASTQC as PRE_FASTQC; 
-          FASTQC as POST_FASTQC } from 'modules/fastq'
-include { FASTP                 } from 'modules/fastp'
+          FASTQC as POST_FASTQC } from './modules/fastqc'
+include { FASTP                 } from './modules/fastp'
 include { BWA_INDEX; 
-          BWA_ALIGN             } from 'modules/bwa'
+          BWA_ALIGN             } from './modules/bwa'
 
 // Default workflow parameters are provided in the file 'nextflow.config'.
 

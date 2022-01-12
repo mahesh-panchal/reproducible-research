@@ -43,4 +43,5 @@ process BWA_ALIGN {
             -o ${prefix}.bam -
     samtools flagstat ${prefix}.bam > ${prefix}.bam.flagstat
     samtools stats ${prefix}.bam > ${prefix}.bam.stats
+    """
 }
