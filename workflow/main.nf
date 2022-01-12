@@ -18,18 +18,18 @@ workflow {
     // Stage input files
     Channel.fromFilePairs ( params.illumina_fastq, checkIfExists: true )
         .ifEmpty { exit 1, "Please supply valid path(s) to illumina fastq read pairs: ${params.illumina_fastq}!\n" }
-        .set { reads }
+        .set { reads_ch }
     Channel.fromPath ( params.reference, checkIfExists: true )
         .ifEmpty { exit 1, "Please supply valid path(s) to a reference genome: ${params.reference}!\n" }
-        .set { reference }
+        .set { reference_ch }
 
     // Quality Check reads
-    PRE_FASTQC ( reads )
-    FASTP ( reads )
+    PRE_FASTQC ( reads_ch )
+    FASTP ( reads_ch )
     POST_FASTQC ( FASTP.out.reads )
 
     // Alignment
-    BWA_INDEX ( reference.collect() )
+    BWA_INDEX ( reference_ch.collect() )
     BWA_ALIGN (
         FASTP.out.reads,
         BWA_INDEX.out.index.collect()
