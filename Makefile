@@ -11,6 +11,8 @@ CONTAINER_CMD := docker run --user "$(UID):$(GROUP)" --rm -v "${PWD}:/home/rstud
 
 # Run Nextflow workflow
 analysis:
+	cd analyses/carpentries-data_wrangling; \
+	./run_nextflow.sh
 
 # Builds conda environment to execute workflow
 # nextflow-env:
