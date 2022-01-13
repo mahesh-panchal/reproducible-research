@@ -12,6 +12,16 @@ include { BWA_INDEX;
 
 // Default workflow parameters are provided in the file 'nextflow.config'.
 
+// Print Workflow header
+log.info("""
+
+ $workflow.manifest.name
+ ===================================
+ $workflow.manifest.description
+
+""")
+
+
 // Default workflow
 workflow {
 
