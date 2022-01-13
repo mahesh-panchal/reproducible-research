@@ -4,21 +4,21 @@ process BWA_INDEX {
     path fasta
 
     output:
-    path "bwa", emit: index
+    path "bwa_index", emit: index
 
     script:
     def args = task.ext.args ?: ''
     """
-    mkdir bwa
+    mkdir bwa_index
     bwa index \\
         $args \\
-        -p bwa/${fasta.baseName} \\
+        -p bwa_index/${fasta.baseName} \\
         $fasta
     """
 }
 
 process BWA_ALIGN {
-    
+
     input:
     tuple val( id ), path( fastqs )
     path index
@@ -33,10 +33,10 @@ process BWA_ALIGN {
     def args2  = task.ext.args2  ?: ''
     def prefix = task.ext.prefix ?: id
     """
-    INDEX=\$( basename bwa/*.amb .amb )
+    INDEX=\$( find -L . -name "*.amb" )
     bwa mem $args \\
         -t $task.cpus \\
-        \$INDEX \\
+        \${INDEX%.amb} \\
         $fastqs | \\
         samtools sort $args2 \\
             --threads $task.cpus \\
