@@ -1,5 +1,7 @@
 process FASTQC {
 
+    tag "$id"
+
     input:
     tuple val( id ), path( fastqs )
 

@@ -19,6 +19,8 @@ process BWA_INDEX {
 
 process BWA_ALIGN {
 
+    tag "$id"
+
     input:
     tuple val( id ), path( fastqs )
     path index

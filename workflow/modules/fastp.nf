@@ -1,5 +1,7 @@
 process FASTP {
-    
+
+    tag "$id"
+
     input:
     tuple val( id ), path( fastqs )
 
