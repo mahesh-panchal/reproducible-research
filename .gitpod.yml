@@ -5,9 +5,8 @@ tasks:
       docker-compose pull
       make rocker-distill
   - name: Install Nextflow
-    init: |
-      curl -s https://get.nextflow.io | bash
-      sudo mv nextflow /usr/local/bin
+    init: curl -s https://get.nextflow.io | bash
+    command: sudo mv nextflow /usr/local/bin
 
 ports:
   # Expose port for RStudio
