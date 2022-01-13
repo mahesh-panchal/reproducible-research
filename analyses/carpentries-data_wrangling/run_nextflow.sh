@@ -5,8 +5,9 @@ BASEDIR=${BASEDIR:-/workspace/reproducible-research}
 NXF_SCRIPT=${NXF_SCRIPT:-$BASEDIR/workflow/main.nf}
 WORKDIR=${WORKDIR:-/workspace/nxf-work}
 
-nextflow run -ansi-log false -resume \
+nextflow run -resume \
+    -ansi-log false \
+    -params-file params.yml \
     -profile "$PROFILE" \
     -work-dir "$WORKDIR" \
-    -params-file params.yml \
     "$NXF_SCRIPT"
