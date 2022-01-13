@@ -2,7 +2,7 @@
 version: "3.9"
 services:
   rstudio:
-    image: 'rocker/verse:4.1.2'
+    image: 'ghcr.io/mahesh-panchal/rocker/distill:4.1.2'
     ports:
       - 8787:8787
       # - 127.0.0.1:8787:8787 # IP is not localhost here.
@@ -12,9 +12,10 @@ services:
       # Add your own password above or use
       # `docker logs <container>` to see the randomly generated password
     volumes:
-      - $PWD:/home/rstudio/reproducible-research
-      - data:/home/rstudio/data
+      - /workspace/reproducible-research:/home/rstudio/reproducible-research
+      - /workspace/data:/home/rstudio/data
+      # - data:/home/rstudio/data
     working_dir: /home/rstudio
     # user: "$UID:$GROUPS" # Do not use this! RStudio server needs to run as root. Set USERID above.
-volumes:
-  data:
+# volumes:
+  # data: # Reusable data volume
