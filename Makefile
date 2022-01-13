@@ -1,16 +1,25 @@
 # Makefile for the Gitpod Environment. TODO: Add a script for ./configure
 
-# CONDA_PKGM := mamba                  # Conda package manager to use
-DISTILL_IMG := rocker/distill:4.1.2  # Image name and version
-WEBSITE_DIR := website
-# Replace Container command with Singularity, or other container engine
-# Initialise to empty string along with DISTILL_IMG to use local R installation
+# General settings
 UID := $$( id -u )
 GROUP := $$( id -g )
+
+# Conda settings
+# CONDA_PKGM := mamba                  # Conda package manager to use
+
+# R settings
+# Replace Container command with Singularity, or other container engine
+# Initialise to empty string along with DISTILL_IMG to use local R installation
 CONTAINER_CMD := docker run --user "$(UID):$(GROUP)" --rm -v "${PWD}:/home/rstudio" -w /home/rstudio
+DISTILL_IMG := ghcr.io/mahesh-panchal/rocker/distill:4.1.2  # Image name and version
+WEBSITE_DIR := website
 
 # Run Nextflow workflow
 analysis:
+	cd analyses/carpentries-data_wrangling; \
+	./run_nextflow.sh
+
+workflow-test:
 	cd analyses/carpentries-data_wrangling; \
 	./run_nextflow.sh
 
@@ -27,10 +36,6 @@ report:
 	$(CONTAINER_CMD) $(DISTILL_IMG) Rscript scripts/build_report.R
 
 clean-report:
-
-# Build the Rocker Distill container for making the website and reports
-rocker-distill:
-	scripts/build_distill_container.sh $(DISTILL_IMG)
 
 # Publish Distill website to local gh-pages branch
 gh-pages: $(WEBSITE_DIR)/docs/index.html
@@ -58,4 +63,10 @@ rstudio-start:
 rstudio-stop:
 	docker-compose down
 
-.PHONY: analysis gh-pages report rocker-distill website clean-report clean-website rstudio-start rstudio-stop
+.PHONY: fetch-rawdata
+.PHONY: analysis workflow-test 
+.PHONY: gh-pages gh-pages-origin
+.PHONY: report clean-report 
+.PHONY: rocker-distill 
+.PHONY: website clean-website 
+.PHONY: rstudio-start rstudio-stop
