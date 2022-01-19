@@ -57,6 +57,11 @@ command line terminal to try this for yourself. The following tools are availabl
 - R and RStudio (via a Docker container)
 - Nextflow
 
+Resources available:
+- 16 cpus
+- 62 GB mem
+- 285 GB disk space
+
 ## Acknowledgements
 
 This repository was inspired by the [Hypocolypse website](https://hypocolypse.github.io/).
