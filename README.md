@@ -56,3 +56,9 @@ command line terminal to try this for yourself. The following tools are availabl
 - Docker
 - R and RStudio (via a Docker container)
 - Nextflow
+
+## Acknowledgements
+
+This repository was inspired by the [Hypocolypse website](https://hypocolypse.github.io/).
+A lot of the things I've learned here have come about through my interactions with the 
+[nf-core](https://nf-co.re/) community, particulary on their [Slack channels](https://nf-co.re/join/slack).
