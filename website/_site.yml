@@ -1,7 +1,9 @@
 name: "website_src"
-title: "My reproducible research project"
+title: "Working reproducibly"
+base_url: https://mahesh-panchal.github.io/reproducible-research/
+repository_url: https://github.com/mahesh-panchal/reproducible-research
 description: |
-  My reproducible research project
+  A demonstration of how to work reproducibly from data to website.
 output_dir: "docs"
 navbar:
   right:
