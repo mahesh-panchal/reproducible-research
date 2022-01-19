@@ -1,4 +1,4 @@
-# Makefile for the Gitpod Environment. TODO: Add a script for ./configure
+# Makefile for the Gitpod Environment
 
 # General settings
 UID := $$( id -u )
@@ -10,7 +10,7 @@ GROUP := $$( id -g )
 # R settings
 # Replace Container command with Singularity, or other container engine
 # Initialise to empty string along with DISTILL_IMG to use local R installation
-CONTAINER_CMD := docker run --user "$(UID):$(GROUP)" --rm -v "${PWD}:/home/rstudio" -w /home/rstudio
+ROCKER_CMD := docker run --user "$(UID):$(GROUP)" --rm -v "${PWD}:/home/rstudio" -w /home/rstudio
 DISTILL_IMG := ghcr.io/mahesh-panchal/rocker/distill:4.1.2  # Image name and version
 WEBSITE_DIR := website
 
@@ -33,7 +33,7 @@ fetch-rawdata:
 
 # Build the RMarkdown report
 report:
-	$(CONTAINER_CMD) $(DISTILL_IMG) Rscript scripts/build_report.R
+	$(ROCKER_CMD) $(DISTILL_IMG) Rscript scripts/build_report.R
 
 clean-report:
 
@@ -47,10 +47,10 @@ gh-pages-origin: $(WEBSITE_DIR)/docs/index.html
 
 # Builds the Distill website
 website: $(WEBSITE_DIR)/_site.yml
-	$(CONTAINER_CMD) $(DISTILL_IMG) Rscript scripts/build_website.R $(WEBSITE_DIR)
+	$(ROCKER_CMD) $(DISTILL_IMG) Rscript scripts/build_website.R $(WEBSITE_DIR)
 
 $(WEBSITE_DIR)/_site.yml:
-	$(CONTAINER_CMD) $(DISTILL_IMG) Rscript scripts/init_website.R $(WEBSITE_DIR)
+	$(ROCKER_CMD) $(DISTILL_IMG) Rscript scripts/init_website.R $(WEBSITE_DIR)
 
 clean-website:
 	rm -rf $(WEBSITE_DIR)
