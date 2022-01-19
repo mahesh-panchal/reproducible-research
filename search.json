@@ -6,15 +6,21 @@
       "description": "Some additional details about the website",
       "author": [],
       "contents": "\n\n\n\n",
-      "last_modified": "2022-01-07T19:47:50+00:00"
+      "last_modified": "2022-01-19T21:24:03+00:00"
     },
     {
       "path": "index.html",
-      "title": "My reproducible research project",
-      "description": "Welcome to the website. I hope you enjoy it!\n",
-      "author": [],
+      "title": "Data to publication",
+      "description": "A demonstration of how to go reproducibly from data to website.\n",
+      "author": [
+        {
+          "name": "Mahesh Binzer-Panchal",
+          "url": "https://github.com/mahesh-panchal"
+        }
+      ],
+      "date": "January 19, 2022",
       "contents": "\n\n\n\n",
-      "last_modified": "2022-01-07T19:47:50+00:00"
+      "last_modified": "2022-01-19T21:24:03+00:00"
     }
   ],
   "collections": []
