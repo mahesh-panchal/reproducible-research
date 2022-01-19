@@ -67,3 +67,6 @@ Resources available:
 This repository was inspired by the [Hypocolypse website](https://hypocolypse.github.io/).
 A lot of the things I've learned here have come about through my interactions with the 
 [nf-core](https://nf-co.re/) community, particulary on their [Slack channels](https://nf-co.re/join/slack).
+Data and exercise material were modified from the 
+[Data Carpentries - Data Wrangling and Processing for Genomics](https://datacarpentry.org/wrangling-genomics/) and 
+[Data Carpentries - Intro to R and RStudio for Genomics](https://datacarpentry.org/genomics-r-intro/) lessons.
