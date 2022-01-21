@@ -43,6 +43,7 @@ gh-pages: $(WEBSITE_DIR)/docs/index.html
 
 # Publish Distill website to gh-pages branch on Github
 gh-pages-origin: $(WEBSITE_DIR)/docs/index.html
+	git push origin :gh-pages
 	git subtree push --prefix $(WEBSITE_DIR)/docs origin gh-pages
 
 # Builds the Distill website
