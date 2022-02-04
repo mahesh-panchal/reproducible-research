@@ -68,6 +68,5 @@ rstudio-stop:
 .PHONY: analysis workflow-test 
 .PHONY: gh-pages gh-pages-origin
 .PHONY: report clean-report 
-.PHONY: rocker-distill 
 .PHONY: website clean-website 
 .PHONY: rstudio-start rstudio-stop
