@@ -56,6 +56,14 @@ $(WEBSITE_DIR)/_site.yml:
 clean-website:
 	rm -rf $(WEBSITE_DIR)
 
+webpages: $(WEBSITE_DIR)/docs/$(wildcard *.html)
+
+$(WEBSITE_DIR)/docs/%.html:	$(WEBSITE_DIR)/%.Rmd
+	$(ROCKER_CMD) $(DISTILL_IMG) Rscript -e 'rmarkdown::render_site("$<")'
+
+$(WEBSITE_DIR)/%.Rmd:
+	$(ROCKER_CMD) $(DISTILL_IMG) Rscript -e 'distill::create_article("$@",edit=FALSE)'
+
 # Run RStudio from Rocker/verse:4.1.2 using docker-compose
 rstudio-start:
 	UID=$(UID) docker-compose up -d
@@ -68,5 +76,6 @@ rstudio-stop:
 .PHONY: analysis workflow-test 
 .PHONY: gh-pages gh-pages-origin
 .PHONY: report clean-report 
-.PHONY: website clean-website 
+.PHONY: website clean-website
+.PHONY: webpages
 .PHONY: rstudio-start rstudio-stop
