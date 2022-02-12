@@ -57,6 +57,7 @@ clean-website:
 	rm -rf $(WEBSITE_DIR)
 
 webpages: $(WEBSITE_DIR)/docs/$(wildcard *.html)
+	@echo "Please update _site.yml with links to html files"
 
 $(WEBSITE_DIR)/docs/%.html:	$(WEBSITE_DIR)/%.Rmd
 	$(ROCKER_CMD) $(DISTILL_IMG) Rscript -e 'rmarkdown::render_site("$<")'
