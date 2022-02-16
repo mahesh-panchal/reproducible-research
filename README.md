@@ -24,6 +24,17 @@ This demo aims to lower the barrier as much as possible for computational biolog
 but there is one thing that can not be avoided. That is, comfort with the Unix command line. Knowing how to 
 navigate the file system is a fundamental first step in using these tools. 
 
+## Workflow overview
+
+```mermaid
+graph TB
+A(Fetch data) --> B[Process with Nextflow/Snakemake/Galaxy]
+B --> C(Package intermediate results)
+B --> D[Notebook Report with RMarkdown]
+B --> E[Distill Website with RMarkdown]
+E --> F[Publish Website on Github]
+```
+
 ## Tools
 
 Here is a brief description of the tools I use. See their corresponding webpages in this demo for more details 
