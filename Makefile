@@ -71,7 +71,7 @@ rstudio-start:
 	$(info If you didn't provide a password in docker-compose.yml, then use `docker logs <container>` to see your password)
 
 rstudio-stop:
-	docker-compose down
+	docker-compose -f rstudio-docker-compose.yml down
 
 # Run Jupyter from jupyter/datascience-notebook using docker-compose
 jupyter-start:
@@ -79,7 +79,7 @@ jupyter-start:
 	$(info If you didn't provide a password in docker-compose.yml, then use `docker logs <container>` to see your token)
 
 jupyter-stop:
-	docker-compose down
+	docker-compose -f jupyter-docker-compose.yml down
 
 .PHONY: fetch-rawdata
 .PHONY: analysis workflow-test 

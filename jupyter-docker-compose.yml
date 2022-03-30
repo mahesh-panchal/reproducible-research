@@ -4,7 +4,7 @@ services:
   jupyter:
     image: 'jupyter/datascience-notebook:b418b67c225b'
     ports:
-      - 8787:8888
+      - 8888:8888
       # - 127.0.0.1:8787:8787 # IP is not localhost here.
     environment: # copied from RStudio docker file - may not be correct.
       - USERID=$UID
