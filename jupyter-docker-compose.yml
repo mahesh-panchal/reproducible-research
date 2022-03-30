@@ -1,0 +1,21 @@
+# Run using: UID="$( id -u )" docker compose up -d
+version: "3.9"
+services:
+  jupyter:
+    image: 'jupyter/datascience-notebook:b418b67c225b'
+    ports:
+      - 8787:8888
+      # - 127.0.0.1:8787:8787 # IP is not localhost here.
+    environment: # copied from RStudio docker file - may not be correct.
+      - USERID=$UID
+      # - PASSWORD=clever-custom-password 
+      # Add your own password above or use
+      # `docker logs <container>` to see the randomly generated password
+    volumes:
+      - /workspace/reproducible-research:/home/jupyter/reproducible-research
+      - /workspace/data:/home/jupyter/data
+      # - data:/home/jupyter/data
+    working_dir: /home/jupyter
+    # user: "$UID:$GROUPS" 
+# volumes:
+  # data: # Reusable data volume
