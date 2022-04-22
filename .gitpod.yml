@@ -16,10 +16,11 @@ ports:
   # Expose port for RStudio
   - port: 8787
     onOpen: open-browser
-  # Expose port for Jupyter
+# Expose port for Jupyter
   - port: 8888
     onOpen: open-browser
 
 vscode:
   extensions:
     - ritwickdey.liveserver
+    - quarto.quarto
