@@ -1,0 +1,62 @@
+---
+title: Sequence alignment study
+format:
+  html:
+    toc: true
+    toc-location: left
+    self-contained: true
+    page-layout: full
+author: 
+  - name: '[Mahesh Binzer-Panchal](mailto:mahesh.binzer-panchal@nbis.se)'
+    affiliation: 
+      - Department of Medical Biochemistry and Microbiology, 
+      - National Bioinformatics Infrastructure Sweden (NBIS),
+      - Science for Life Laboratory,
+      - Uppsala Universitet, Uppsala, Sweden
+    orcid: 0000-0003-1675-0677
+date: last-modified
+date-format: iso
+engine: knitr
+---
+
+# Sequence analysis
+
+## Methods
+
+Nextflow is used to run these analyses in an automated fashion
+
+```{bash}
+#| echo: false
+#| fig-cap: 'Nextflow version'
+nextflow info
+```
+
+Data is first retrieved:
+```{bash}
+scripts/fetch_rawdata.sh
+```
+
+The workflow is started using:
+
+```{bash}
+cd analyses/carpentries-data_wrangling
+./run_nextflow.sh
+```
+
+
+## Nextflow syntax highlight
+
+```{.groovy}
+#! /usr/bin/env
+
+nextflow.enable.dsl = 2
+
+workflow {
+    FOO()
+}
+
+process FOO {
+    exec:
+    println 'hello'
+}
+```
