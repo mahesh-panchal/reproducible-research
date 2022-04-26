@@ -11,6 +11,8 @@ tasks:
       wget https://github.com/quarto-dev/quarto-cli/releases/download/v0.9.295/quarto-0.9.295-linux-amd64.deb
       sudo dpkg -i quarto-0.9.295-linux-amd64.deb
       rm quarto-0.9.295-linux-amd64.deb
+      sudo apt-get install r-base r-base-dev
+      sudo Rscript -e 'install.packages("rmarkdown")'
 
 ports:
   # Expose port for RStudio
