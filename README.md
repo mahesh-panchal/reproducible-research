@@ -30,9 +30,9 @@ navigate the file system is a fundamental first step in using these tools.
 graph TB
 A(Fetch data) --> B[Process with Nextflow/Snakemake/Galaxy]
 B --> C(Package intermediate results)
-B --> D[Notebook Report with RMarkdown]
-B --> E[Distill Website with RMarkdown]
-E --> F[Publish Website on Github]
+B --> D[Notebook Report with Quarto]
+B --> E[Website with Quarto]
+E --> F[Publish Website on Github pages]
 ```
 
 ## Tools
@@ -50,11 +50,12 @@ the dependencies necessary to run. There are many container platforms, but here 
 
 **Notebooks**: These are files where you record how, what and why you are doing something. They intermingle
 code and explanation, keeping relevant parts together for easier understanding. The code you use to 
-obtain your results can not be misinterpreted. I use **RMarkdown** in this demo, which also allows the notebooks
-to be published in various forms such as a website, report, or slide show. 
+obtain your results can not be misinterpreted. I use **Quarto** in this demo, which also allows the notebooks
+to be published in various forms such as a website, report, or slide show. **Quarto** is an improved 
+system over **RMarkdown**, or **Jupyter**, which I would have otherwise recommended before.
 
 **Workflow manager**: A workflow manager is used to handle large scale data processing (or even small scale
-as demonstrated here). Notebooks are generally limited to processing tables of results, running statistical 
+as demonstrated here). Notebooks should generally be limited to processing tables of results, running statistical 
 analyses, and producing plots for interpretation. A workflow manager on the other hand can be used to take 
 large quantities of data, process them in parallel, and deliver refined tables of results that are easy to 
 process in a notebook. **Nextflow** is my favoured workflow manager.
@@ -65,7 +66,9 @@ command line terminal to try this for yourself. The following tools are availabl
 
 - git
 - Docker
+- Quarto
 - R and RStudio (via a Docker container)
+- Python and Jupyter (via a Docker container)
 - Nextflow
 
 Resources available:
