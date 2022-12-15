@@ -1,7 +1,7 @@
 
 tasks:
   - name: Setup Rocker Containers
-    init: UID=$(UID) docker-compose -f rstudio-docker-compose.yml -f jupyter-docker-compose.yml pull
+    init: UID=$(UID) docker-compose -f dockerfiles/rstudio-docker-compose.yml -f dockerfiles/jupyter-docker-compose.yml pull
   - name: Install Nextflow
     command: |
       curl -s https://get.nextflow.io | bash
