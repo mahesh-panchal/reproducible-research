@@ -1,0 +1,5 @@
+# Documentation
+
+[Diátaxis](https://diataxis.fr/) is a systematic approach to technical documentation authoring.
+
+Include README.md files in nearly all folders to describe what to expect in each folder.
