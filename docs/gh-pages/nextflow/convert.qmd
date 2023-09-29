@@ -1,1 +1,84 @@
 # Converting scripts to Nextflow
+
+Practically, starting with Nextflow often involves converting 
+a set of scripts from an existing project.
+How does one choose how to separate the code into processes?
+
+Example:
+```bash
+tool1 --opts file.txt > file.tool1.txt
+tool2 --opts file.tool1.txt > file.tool2.a.txt
+tool2 --opts file.tool2.a.txt > file.tool2.b.txt
+while read line; do
+    tool2 --opts $line >> file.tool2.c.txt
+done < file.tool2.b.txt
+tool2 --opts file.tool2.c.txt > file.tool2.d.txt
+```
+
+In this example. First code blocks for `tool1` and `tool2` would be separated into their own processes. Typically these would also have their own unique containers too. Then the code block for `tool2` would be examined for parallelization possibilities.
+So lines 2-3 would be one process, line 5 would be in another process, and line 7 in yet another process. The parallelization of line 4/6 would be handled in the `workflow` block. 
+
+```nextflow
+workflow {
+    ch_input = Channel.fromPath( params.infile, checkIfExists: true )
+    TOOL1( ch_input )
+    TOOL2_AB( TOOL1.out.txt )
+    TOOL2_C( TOOL2_AB.out.b_txt.splitText() )
+    TOOL2_D( TOOL2_C.out.txt.collectFile( name:'tool2.c.txt' ) )
+}
+
+process TOOL1 {
+    input:
+    path file
+
+    script:
+    """
+    tool1 --opts $file > ${file.baseName}.tool1.txt
+    """
+
+    output:
+    path "*.tool1.txt", emit: txt
+}
+
+process TOOL2_AB {
+    input:
+    path file
+
+    script:
+    """
+    tool2 --opts $file > ${file.simpleName}.tool2.a.txt
+    tool2 --opts ${file.simpleName}.tool2.a.txt > ${file.simpleName}.tool2.b.txt
+    """
+
+    output:
+    path "*.tool2.a.txt", emit: a_txt
+    path "*.tool2.b.txt", emit: b_txt
+
+}
+
+process TOOL2_C {
+    input:
+    val record
+
+    script:
+    """
+    tool2 --opts $record > tool2.c.txt
+    """
+
+    output:
+    path "tool2.c.txt", emit: txt
+}
+
+process TOOL2_D {
+    input:
+    path file
+
+    script:
+    """
+    tool2 --opts $file > ${file.simpleName}.tool2.d.txt
+    """
+
+    output:
+    path "*.tool2.d.txt", emit: txt
+}
+```
