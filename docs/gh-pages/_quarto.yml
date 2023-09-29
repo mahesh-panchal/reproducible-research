@@ -30,6 +30,10 @@ book:
         - nextflow/config.qmd
         - nextflow/convert.qmd
         - nextflow/nfcore.qmd
+    - part: quarto/intro.qmd
+      chapters: 
+        - quarto/markdown.qmd
+        - quarto/input.qmd
     - summary.qmd
     - references.qmd
 
