@@ -8,6 +8,23 @@ book:
   chapters:
     - index.qmd
     - intro.qmd
+    - part: data_management/intro.qmd
+      chapters:
+        - data_management/layout.qmd
+    - part: conda/intro.qmd
+      chapters:
+        - conda/environments.qmd
+    - part: docker/intro.qmd
+    - part: apptainer/intro.qmd
+    - part: nextflow/intro.qmd
+      chapters:
+        - nextflow/basics.qmd
+        - nextflow/processes.qmd
+        - nextflow/staging.qmd
+        - nextflow/async.qmd
+        - nextflow/operators.qmd
+        - nextflow/config.qmd
+        - nextflow/nfcore.qmd
     - summary.qmd
     - references.qmd
 

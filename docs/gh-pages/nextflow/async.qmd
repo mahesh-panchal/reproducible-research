@@ -1,0 +1,3 @@
+# Asyncronous channels
+
+Understanding the asyncronous aspect and how that affects process output and inputs.
