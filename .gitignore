@@ -40,3 +40,13 @@ vignettes/*.pdf
 
 # Nextflow log files
 .nextflow*
+work/
+
+# Quarto files
+.quarto/
+_site/
+_book/
+**/.gitignore
+
+# misc
+.DS_Store
