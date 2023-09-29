@@ -7,7 +7,7 @@ book:
   date: last-modified
   page-navigation: true
   sidebar:
-    title: TOC
+    title: "Content:"
     search: true
   chapters:
     - index.qmd
