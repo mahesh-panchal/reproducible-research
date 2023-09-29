@@ -1,5 +1,4 @@
 # Preface {.unnumbered}
 
-This is a Quarto book.
-
-To learn more about Quarto books visit <https://quarto.org/docs/books>.
+This is an introduction to working reproducibly. The content is scattered
+at the moment as I find time to add it.

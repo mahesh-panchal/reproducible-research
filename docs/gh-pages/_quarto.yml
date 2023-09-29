@@ -2,9 +2,13 @@ project:
   type: book
 
 book:
-  title: "gh-pages"
-  author: "Norah Jones"
-  date: "9/29/2023"
+  title: "Reproducible Research"
+  author: "Mahesh Binzer-Panchal"
+  date: last-modified
+  page-navigation: true
+  sidebar:
+    title: TOC
+    search: true
   chapters:
     - index.qmd
     - intro.qmd
@@ -24,6 +28,7 @@ book:
         - nextflow/async.qmd
         - nextflow/operators.qmd
         - nextflow/config.qmd
+        - nextflow/convert.qmd
         - nextflow/nfcore.qmd
     - summary.qmd
     - references.qmd
@@ -32,9 +37,9 @@ bibliography: references.bib
 
 format:
   html:
-    theme: cosmo
-  pdf:
-    documentclass: scrreprt
+    theme: sandstone
+  # pdf:
+  #   documentclass: scrreprt
 
 
 
