@@ -1,27 +1,51 @@
-{
-  "articles": [
-    {
-      "path": "about.html",
-      "title": "About this site",
-      "description": "Some additional details about the website",
-      "author": [],
-      "contents": "\n\n\n\n",
-      "last_modified": "2022-01-19T21:24:03+00:00"
-    },
-    {
-      "path": "index.html",
-      "title": "Data to publication",
-      "description": "A demonstration of how to go reproducibly from data to website.\n",
-      "author": [
-        {
-          "name": "Mahesh Binzer-Panchal",
-          "url": "https://github.com/mahesh-panchal"
-        }
-      ],
-      "date": "January 19, 2022",
-      "contents": "\n\n\n\n",
-      "last_modified": "2022-01-19T21:24:03+00:00"
-    }
-  ],
-  "collections": []
-}
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Reproducible Research",
+    "section": "",
+    "text": "Preface\nThis is an introduction to working reproducibly. The content is scattered at the moment as I find time to add it."
+  },
+  {
+    "objectID": "intro.html",
+    "href": "intro.html",
+    "title": "1  Introduction",
+    "section": "",
+    "text": "This is a book created from markdown and executable code.\nSee Knuth (1984) for additional discussion of literate programming.\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97."
+  },
+  {
+    "objectID": "nextflow/basics.html",
+    "href": "nextflow/basics.html",
+    "title": "4  Nextflow fundamentals",
+    "section": "",
+    "text": "Basic structure of Nextflow parts"
+  },
+  {
+    "objectID": "nextflow/async.html",
+    "href": "nextflow/async.html",
+    "title": "7  Asyncronous channels",
+    "section": "",
+    "text": "Understanding the asyncronous aspect and how that affects process output and inputs."
+  },
+  {
+    "objectID": "nextflow/convert.html",
+    "href": "nextflow/convert.html",
+    "title": "10  Converting scripts to Nextflow",
+    "section": "",
+    "text": "Practically, starting with Nextflow often involves converting a set of scripts from an existing project. How does one choose how to separate the code into processes?\nExample:\ntool1 --opts file.txt &gt; file.tool1.txt\ntool2 --opts file.tool1.txt &gt; file.tool2.a.txt\ntool2 --opts file.tool2.a.txt &gt; file.tool2.b.txt\nwhile read line; do\n    tool2 --opts $line &gt;&gt; file.tool2.c.txt\ndone &lt; file.tool2.b.txt\ntool2 --opts file.tool2.c.txt &gt; file.tool2.d.txt\nIn this example. First code blocks for tool1 and tool2 would be separated into their own processes. Typically these would also have their own unique containers too. Then the code block for tool2 would be examined for parallelization possibilities. So lines 2-3 would be one process, line 5 would be in another process, and line 7 in yet another process. The parallelization of line 4/6 would be handled in the workflow block.\nworkflow {\n    ch_input = Channel.fromPath( params.infile, checkIfExists: true )\n    TOOL1( ch_input )\n    TOOL2_AB( TOOL1.out.txt )\n    TOOL2_C( TOOL2_AB.out.b_txt.splitText() )\n    TOOL2_D( TOOL2_C.out.txt.collectFile( name:'tool2.c.txt' ) )\n}\n\nprocess TOOL1 {\n    input:\n    path file\n\n    script:\n    \"\"\"\n    tool1 --opts $file &gt; ${file.baseName}.tool1.txt\n    \"\"\"\n\n    output:\n    path \"*.tool1.txt\", emit: txt\n}\n\nprocess TOOL2_AB {\n    input:\n    path file\n\n    script:\n    \"\"\"\n    tool2 --opts $file &gt; ${file.simpleName}.tool2.a.txt\n    tool2 --opts ${file.simpleName}.tool2.a.txt &gt; ${file.simpleName}.tool2.b.txt\n    \"\"\"\n\n    output:\n    path \"*.tool2.a.txt\", emit: a_txt\n    path \"*.tool2.b.txt\", emit: b_txt\n\n}\n\nprocess TOOL2_C {\n    input:\n    val record\n\n    script:\n    \"\"\"\n    tool2 --opts $record &gt; tool2.c.txt\n    \"\"\"\n\n    output:\n    path \"tool2.c.txt\", emit: txt\n}\n\nprocess TOOL2_D {\n    input:\n    path file\n\n    script:\n    \"\"\"\n    tool2 --opts $file &gt; ${file.simpleName}.tool2.d.txt\n    \"\"\"\n\n    output:\n    path \"*.tool2.d.txt\", emit: txt\n}"
+  },
+  {
+    "objectID": "summary.html",
+    "href": "summary.html",
+    "title": "12  Summary",
+    "section": "",
+    "text": "In summary, this book has no content whatsoever."
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "Knuth, Donald E. 1984. “Literate Programming.” Comput.\nJ. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97."
+  }
+]
