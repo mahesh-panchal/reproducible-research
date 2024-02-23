@@ -8,7 +8,9 @@ services:
       # - 127.0.0.1:8787:8787 # IP is not localhost here.
     environment:
       - USERID=$UID
-      # - PASSWORD=clever-custom-password 
+      # - USER=<choose-a-username> # User is now root for some reason
+      # - PASSWORD=<choose-a-password>
+      - DISABLE_AUTH=true 
       # Add your own password above or use
       # `docker logs <container>` to see the randomly generated password
     volumes:

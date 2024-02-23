@@ -44,20 +44,20 @@ gh-pages:
 ## RSTUDIO - Not needed
 # Run RStudio from Rocker/verse:latest using docker-compose
 rstudio-start:
-	UID=$(UID) docker-compose -f rstudio-docker-compose.yml up -d
+	UID=$(UID) docker-compose -f dockerfiles/rstudio-docker-compose.yml up -d
 	$(info If you didn't provide a password in docker-compose.yml, then use `docker logs <container>` to see your password)
 
 rstudio-stop:
-	docker-compose -f rstudio-docker-compose.yml down
+	UID=$(UID) docker-compose -f dockerfiles/rstudio-docker-compose.yml down
 
 ## JUPYTER
 # Run Jupyter from jupyter/datascience-notebook using docker-compose
 jupyter-start:
-	UID=$(UID) docker-compose -f jupyter-docker-compose.yml up -d
+	UID=$(UID) docker-compose -f dockerfiles/jupyter-docker-compose.yml up -d
 	$(info If you didn't provide a password in docker-compose.yml, then use `docker logs <container>` to see your token)
 
 jupyter-stop:
-	docker-compose -f jupyter-docker-compose.yml down
+	UID=$(UID) docker-compose -f dockerfiles/jupyter-docker-compose.yml down
 
 .PHONY: fetch-rawdata
 .PHONY: analysis workflow-test 
